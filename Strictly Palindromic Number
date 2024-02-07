@@ -1,0 +1,34 @@
+class Solution {
+public:
+bool ispalindrone(int len,vector<int> arr){
+    int i=0;
+    int j = len-1;
+    while(i<=j){
+        if(arr[i]!=arr[j]){
+            return false;
+        }
+        i++;
+        j--;
+    }
+    return true;
+}
+
+bool ispossible(int base,int number){
+    vector<int> ans;
+    while(number){
+        ans.push_back(number%base);
+        number/=base;
+    }
+    int len = ans.size();
+    
+    return ispalindrone(len,ans);
+}
+    bool isStrictlyPalindromic(int n) {
+        for(int i=2;i<=n-2;i++){
+            if(ispossible(i,n)==false){
+                return false;
+            }
+        }
+        return true;
+    }
+};
