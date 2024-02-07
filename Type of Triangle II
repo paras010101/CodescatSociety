@@ -1,0 +1,25 @@
+class Solution {
+public:
+    string triangleType(vector<int>& nums) {
+        string ans = "";
+        if(nums[0]+nums[1]>nums[2] && nums[1]+nums[2]>nums[0] && nums[2]+nums[0]>nums[1]){
+          if(nums[0]==nums[1] || nums[1]==nums[2] || nums[2]==nums[0]){
+                  ans = "isosceles";
+              }
+          else if(nums[0]+nums[1]>nums[2] && nums[1]+nums[2]>nums[0] && nums[2]+nums[0]>nums[1]){
+              ans = "scalene";
+          }
+        }
+       
+        
+        if (nums[0]==nums[1] && nums[1]==nums[2]){
+            ans = "equilateral";
+        }
+
+        
+        if(ans==""){
+            ans = "none";
+        }
+        return ans;
+        }
+};
