@@ -1,0 +1,32 @@
+class Solution {
+public:
+void c(int n,int r,vector<int> &ans){
+    if(n==0){
+        ans.push_back(1);
+        return;
+    }
+    long long result = 1;
+    for(int i=0;i<r;i++){
+        result*=n;
+        n--;
+        result/=(i+1);
+    }
+    ans.push_back(result);
+}
+    vector<vector<int>> generate(int numRows) {
+        vector<int>ans;
+        vector<vector<int>>finalans;
+        for(int n=0;n<numRows;n++){
+            int r = 0;
+            while(r<=n){
+                c(n,r,ans);
+                r++;
+            }
+            
+            finalans.push_back(ans);
+            ans.clear();
+            
+        }
+        return finalans;
+    }
+};
