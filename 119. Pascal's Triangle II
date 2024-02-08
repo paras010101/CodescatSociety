@@ -1,0 +1,24 @@
+class Solution {
+public:
+
+int calculate (int n,int r){
+    if(n==0) return 1;
+    long long int result = 1;
+    for(int i=0;i<r;i++){
+        result*=n;
+        n--;
+        result/=(i+1);
+    }
+    return result;
+}
+    vector<int> getRow(int rowIndex) {
+        vector<int>ans;
+        int n = rowIndex;
+        int r=0;
+        while(n>=r){
+            ans.push_back(calculate(n,r));
+            r++;
+        }
+        return ans;
+    }
+};
