@@ -1,0 +1,55 @@
+class Solution {
+public:
+
+void merge(vector <int> &arr,int start,int end,int mid){
+    // make a two array left and right 
+    int len1 = mid-start+1;
+    int len2 = end-mid;
+    int* left = new int[len1];
+    int* right = new int[len2];
+    int k = start;
+    for(int i=0;i<len1;i++){
+        left[i] = arr[k++];
+    }
+    k = mid+1;
+    for(int i=0;i<len2;i++){
+        right[i]=arr[k++];
+    }
+
+    int leftindex = 0;
+    int rightindex = 0;
+    int mainindex = start;
+    while(leftindex < len1 && rightindex <len2){
+        if(left[leftindex] < right[rightindex]){
+            arr[mainindex++] = left[leftindex++];
+        }
+        else{
+            arr[mainindex++] = right[rightindex++];
+        }
+    }
+    while(leftindex < len1){
+        arr[mainindex++] = left[leftindex++];
+    }
+    while(rightindex < len2){
+        arr[mainindex++] = right[rightindex++];
+    }
+    
+}
+
+void mergesort(vector <int> &nums,int start,int end){
+    if(start >= end){
+        return;
+    }
+    int mid = (start + end)/2;
+    mergesort(nums,start,mid);
+    mergesort(nums,mid+1,end);
+    merge(nums,start,end,mid);
+}
+    vector<int> sortArray(vector<int>& nums) {
+        // merge sort
+        int start = 0;
+        int end = nums.size()-1;
+        mergesort(nums,start,end);
+        return nums;
+    }
+};
